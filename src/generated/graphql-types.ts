@@ -13,14 +13,50 @@ export type Scalars = {
   Float: number;
 };
 
-export type Query = {
-  __typename?: 'Query';
-  signup: Scalars['Boolean'];
+export type Mutation = {
+  __typename?: 'Mutation';
+  signIn: SignInPayload;
+  signUp: Scalars['String'];
 };
 
 
-export type QuerySignupArgs = {
-  username?: InputMaybe<Scalars['String']>;
+export type MutationSignInArgs = {
+  input?: InputMaybe<SignInInput>;
+};
+
+
+export type MutationSignUpArgs = {
+  input?: InputMaybe<SignUpInput>;
+};
+
+export type Query = {
+  __typename?: 'Query';
+  test: Scalars['Boolean'];
+};
+
+
+export type QueryTestArgs = {
+  test?: InputMaybe<Scalars['String']>;
+};
+
+export type SignInInput = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type SignInPayload = {
+  __typename?: 'SignInPayload';
+  email: Scalars['String'];
+  id: Scalars['ID'];
+  roles?: Maybe<Array<Scalars['String']>>;
+  token: Scalars['String'];
+  username: Scalars['String'];
+};
+
+export type SignUpInput = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+  username: Scalars['String'];
 };
 
 
@@ -94,22 +130,48 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  ID: ResolverTypeWrapper<Scalars['ID']>;
+  Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  SignInInput: SignInInput;
+  SignInPayload: ResolverTypeWrapper<SignInPayload>;
+  SignUpInput: SignUpInput;
   String: ResolverTypeWrapper<Scalars['String']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
+  ID: Scalars['ID'];
+  Mutation: {};
   Query: {};
+  SignInInput: SignInInput;
+  SignInPayload: SignInPayload;
+  SignUpInput: SignUpInput;
   String: Scalars['String'];
 };
 
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  signIn?: Resolver<ResolversTypes['SignInPayload'], ParentType, ContextType, Partial<MutationSignInArgs>>;
+  signUp?: Resolver<ResolversTypes['String'], ParentType, ContextType, Partial<MutationSignUpArgs>>;
+};
+
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  signup?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, Partial<QuerySignupArgs>>;
+  test?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, Partial<QueryTestArgs>>;
+};
+
+export type SignInPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SignInPayload'] = ResolversParentTypes['SignInPayload']> = {
+  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  roles?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>;
+  token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
+  Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  SignInPayload?: SignInPayloadResolvers<ContextType>;
 };
 

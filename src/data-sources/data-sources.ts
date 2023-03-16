@@ -1,4 +1,4 @@
-import { AuthenticationService } from "./services/authentication-service";
+import { AuthenticationService } from "../authentication/dataSources/authentication-service";
 
 export type DataSources = {
   authenticationService: InstanceType<typeof AuthenticationService>;
