@@ -30,9 +30,11 @@ process.on("uncaughtException", (err) => {
   logger.error(err);
 });
 
-server.applyMiddleware({ app, path: "/" });
+server.start().then((res) => {
+  server.applyMiddleware({ app, path: "/" });
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  logger.info(`Running at http://localhost:${PORT}`);
+  const PORT = process.env.PORT || 4000;
+  app.listen(PORT, () => {
+    logger.info(`Running at http://localhost:${PORT}`);
+  });
 });
