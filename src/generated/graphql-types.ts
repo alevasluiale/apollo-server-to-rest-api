@@ -40,8 +40,8 @@ export type QueryTestArgs = {
 };
 
 export type SignInInput = {
-  email: Scalars['String'];
   password: Scalars['String'];
+  username: Scalars['String'];
 };
 
 export type SignInPayload = {
