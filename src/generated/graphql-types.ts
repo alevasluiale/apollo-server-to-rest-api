@@ -46,10 +46,10 @@ export type SignInInput = {
 
 export type SignInPayload = {
   __typename?: 'SignInPayload';
+  accessToken: Scalars['String'];
   email: Scalars['String'];
   id: Scalars['ID'];
   roles?: Maybe<Array<Scalars['String']>>;
-  token: Scalars['String'];
   username: Scalars['String'];
 };
 
@@ -161,10 +161,10 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type SignInPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SignInPayload'] = ResolversParentTypes['SignInPayload']> = {
+  accessToken?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   roles?: Resolver<Maybe<Array<ResolversTypes['String']>>, ParentType, ContextType>;
-  token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
