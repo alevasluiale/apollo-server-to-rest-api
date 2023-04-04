@@ -1,5 +1,5 @@
-import { Resolvers } from "../../generated/graphql-types";
-import { getLogger } from "../../utils/logger";
+import { Resolvers } from "../../../generated/graphql-types";
+import { getLogger } from "../../../utils/logger";
 
 const logger = getLogger(__dirname);
 

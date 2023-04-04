@@ -14,6 +14,12 @@ type WithContent<T> = "content" extends keyof T
   ? WithJSON<T["content"]>
   : never;
 
+type WithQuery<T> = "query" extends keyof T ? T["query"] : never;
+
+type WithParams<T> = "parameters" extends keyof T
+  ? WithQuery<T["parameters"]>
+  : never;
+
 // Deeply indexes into the "requestBody" of the operation
 // equal to operation["responses"][200 or 201]["content"]["application/json"]
 type WithRequest<T> = "requestBody" extends keyof T
@@ -49,6 +55,11 @@ export type ServiceRequest<
   Method extends RequestMethod,
   Path extends keyof paths
 > = WithRequest<ServiceOperation<Method, Path>>;
+
+export type ServiceSearchParams<
+  Method extends RequestMethod,
+  Path extends keyof paths
+> = WithParams<ServiceOperation<Method, Path>>;
 
 /**
  * The response type for a given URL + method for the generated API

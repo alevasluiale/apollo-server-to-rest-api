@@ -1,5 +1,5 @@
-import { AuthenticatedRESTDataSource } from "../../data-sources/authenticated-rest";
-import { SignInInput, SignUpInput } from "../../generated/graphql-types";
+import { AuthenticatedRESTDataSource } from "../../../data-sources/authenticated-rest";
+import { SignInInput, SignUpInput } from "../../../generated/graphql-types";
 
 export class AuthenticationService extends AuthenticatedRESTDataSource {
   signUp(input: SignUpInput) {
@@ -10,6 +10,6 @@ export class AuthenticationService extends AuthenticatedRESTDataSource {
   signIn(input: SignInInput) {
     const url = "/auth/signin";
     // @ts-ignore
-    return this.post<url>(url, input);
+    return this.post<"/auth/signin">(url, input);
   }
 }

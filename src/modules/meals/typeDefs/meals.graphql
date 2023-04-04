@@ -1,0 +1,10 @@
+extend type Query {
+    fetchAllMeals: [MealsPayload!]!
+}
+
+type MealsPayload {
+    id: ID!
+    name: String!
+    description: String!
+    price: Float!
+}

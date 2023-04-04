@@ -3,10 +3,13 @@ import * as path from "path";
 import { buildSchema, graphqlSync } from "graphql";
 import { getLogger } from "./utils/logger";
 import { server } from "./server";
+import createAuthMiddleware from "./utils/authMiddleware";
 
 const logger = getLogger(__dirname);
 
 const app = express();
+
+app.use(createAuthMiddleware());
 
 if (process.env.PUBLIC_SCHEMA_INTROSPECTION_ENABLED === "true") {
   if (process.env.PRIVATE_SCHEMA_INTROSPECTION_ENABLED === "false") {
