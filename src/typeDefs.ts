@@ -4,6 +4,7 @@ import { gql } from "apollo-server-express";
 
 const schemaFiles = [
   "authentication/typeDefs/authentication.graphql",
+  "restaurants/typeDefs/restaurants.graphql",
   "meals/typeDefs/meals.graphql",
 ];
 

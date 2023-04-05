@@ -1,0 +1,9 @@
+input AddRestaurantInput {
+    name: String!
+    description: String!
+    mealsIds: [ID]!
+}
+
+extend type Mutation {
+    addRestaurant(input: AddRestaurantInput): String!
+}

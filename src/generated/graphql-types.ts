@@ -13,6 +13,12 @@ export type Scalars = {
   Float: number;
 };
 
+export type AddRestaurantInput = {
+  description: Scalars['String'];
+  mealsIds: Array<InputMaybe<Scalars['ID']>>;
+  name: Scalars['String'];
+};
+
 export type MealsPayload = {
   __typename?: 'MealsPayload';
   description: Scalars['String'];
@@ -23,8 +29,14 @@ export type MealsPayload = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addRestaurant: Scalars['String'];
   signIn: SignInPayload;
   signUp: Scalars['String'];
+};
+
+
+export type MutationAddRestaurantArgs = {
+  input?: InputMaybe<AddRestaurantInput>;
 };
 
 
@@ -138,6 +150,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  AddRestaurantInput: AddRestaurantInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
@@ -152,6 +165,7 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  AddRestaurantInput: AddRestaurantInput;
   Boolean: Scalars['Boolean'];
   Float: Scalars['Float'];
   ID: Scalars['ID'];
@@ -173,6 +187,7 @@ export type MealsPayloadResolvers<ContextType = any, ParentType extends Resolver
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  addRestaurant?: Resolver<ResolversTypes['String'], ParentType, ContextType, Partial<MutationAddRestaurantArgs>>;
   signIn?: Resolver<ResolversTypes['SignInPayload'], ParentType, ContextType, Partial<MutationSignInArgs>>;
   signUp?: Resolver<ResolversTypes['String'], ParentType, ContextType, Partial<MutationSignUpArgs>>;
 };
