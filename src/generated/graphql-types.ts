@@ -4,6 +4,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -37,6 +38,7 @@ export type Mutation = {
 
 export type MutationAddRestaurantArgs = {
   input?: InputMaybe<AddRestaurantInput>;
+  userId: Scalars['ID'];
 };
 
 
@@ -187,7 +189,7 @@ export type MealsPayloadResolvers<ContextType = any, ParentType extends Resolver
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  addRestaurant?: Resolver<ResolversTypes['String'], ParentType, ContextType, Partial<MutationAddRestaurantArgs>>;
+  addRestaurant?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationAddRestaurantArgs, 'userId'>>;
   signIn?: Resolver<ResolversTypes['SignInPayload'], ParentType, ContextType, Partial<MutationSignInArgs>>;
   signUp?: Resolver<ResolversTypes['String'], ParentType, ContextType, Partial<MutationSignUpArgs>>;
 };

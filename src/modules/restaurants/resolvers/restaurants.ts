@@ -5,9 +5,13 @@ const logger = getLogger(__dirname);
 
 export const restaurantsResolvers: Resolvers = {
   Mutation: {
-    addRestaurant(_, { input }, { dataSources: restaurantsService }) {
-      logger.info(input);
-      return restaurantsService.addRestaurant(input);
+    addRestaurant(
+      _,
+      { input, userId },
+      { dataSources: { restaurantsService } }
+    ) {
+      logger.info(input, userId);
+      return restaurantsService.addRestaurant(input, userId);
     },
   },
 };

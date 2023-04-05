@@ -5,5 +5,5 @@ input AddRestaurantInput {
 }
 
 extend type Mutation {
-    addRestaurant(input: AddRestaurantInput): String!
+    addRestaurant(input: AddRestaurantInput,userId: ID!): String!
 }
