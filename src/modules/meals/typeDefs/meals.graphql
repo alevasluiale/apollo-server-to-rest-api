@@ -1,8 +1,8 @@
 extend type Query {
-    fetchAllMeals: [MealsPayload!]!
+    fetchAllMeals: [Meal!]!
 }
 
-type MealsPayload {
+type Meal {
     id: ID!
     name: String!
     description: String!

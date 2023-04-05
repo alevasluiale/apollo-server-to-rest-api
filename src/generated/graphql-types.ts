@@ -20,8 +20,8 @@ export type AddRestaurantInput = {
   name: Scalars['String'];
 };
 
-export type MealsPayload = {
-  __typename?: 'MealsPayload';
+export type Meal = {
+  __typename?: 'Meal';
   description: Scalars['String'];
   id: Scalars['ID'];
   name: Scalars['String'];
@@ -53,13 +53,22 @@ export type MutationSignUpArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  fetchAllMeals: Array<MealsPayload>;
+  fetchAllMeals: Array<Meal>;
+  fetchAllRestaurants: Array<Maybe<Restaurant>>;
   test: Scalars['Boolean'];
 };
 
 
 export type QueryTestArgs = {
   test?: InputMaybe<Scalars['String']>;
+};
+
+export type Restaurant = {
+  __typename?: 'Restaurant';
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  meals: Array<Maybe<Meal>>;
+  name: Scalars['String'];
 };
 
 export type SignInInput = {
@@ -156,9 +165,10 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
-  MealsPayload: ResolverTypeWrapper<MealsPayload>;
+  Meal: ResolverTypeWrapper<Meal>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  Restaurant: ResolverTypeWrapper<Restaurant>;
   SignInInput: SignInInput;
   SignInPayload: ResolverTypeWrapper<SignInPayload>;
   SignUpInput: SignUpInput;
@@ -171,16 +181,17 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   Float: Scalars['Float'];
   ID: Scalars['ID'];
-  MealsPayload: MealsPayload;
+  Meal: Meal;
   Mutation: {};
   Query: {};
+  Restaurant: Restaurant;
   SignInInput: SignInInput;
   SignInPayload: SignInPayload;
   SignUpInput: SignUpInput;
   String: Scalars['String'];
 };
 
-export type MealsPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['MealsPayload'] = ResolversParentTypes['MealsPayload']> = {
+export type MealResolvers<ContextType = any, ParentType extends ResolversParentTypes['Meal'] = ResolversParentTypes['Meal']> = {
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -195,8 +206,17 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  fetchAllMeals?: Resolver<Array<ResolversTypes['MealsPayload']>, ParentType, ContextType>;
+  fetchAllMeals?: Resolver<Array<ResolversTypes['Meal']>, ParentType, ContextType>;
+  fetchAllRestaurants?: Resolver<Array<Maybe<ResolversTypes['Restaurant']>>, ParentType, ContextType>;
   test?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, Partial<QueryTestArgs>>;
+};
+
+export type RestaurantResolvers<ContextType = any, ParentType extends ResolversParentTypes['Restaurant'] = ResolversParentTypes['Restaurant']> = {
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  meals?: Resolver<Array<Maybe<ResolversTypes['Meal']>>, ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type SignInPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['SignInPayload'] = ResolversParentTypes['SignInPayload']> = {
@@ -209,9 +229,10 @@ export type SignInPayloadResolvers<ContextType = any, ParentType extends Resolve
 };
 
 export type Resolvers<ContextType = any> = {
-  MealsPayload?: MealsPayloadResolvers<ContextType>;
+  Meal?: MealResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Restaurant?: RestaurantResolvers<ContextType>;
   SignInPayload?: SignInPayloadResolvers<ContextType>;
 };
 

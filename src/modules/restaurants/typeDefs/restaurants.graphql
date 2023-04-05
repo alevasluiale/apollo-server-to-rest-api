@@ -4,6 +4,18 @@ input AddRestaurantInput {
     mealsIds: [ID]!
 }
 
+
+extend type Query {
+    fetchAllRestaurants: [Restaurant]!
+}
+
 extend type Mutation {
     addRestaurant(input: AddRestaurantInput,userId: ID!): String!
+}
+
+type Restaurant {
+    id: ID!
+    name: String!
+    description: String!
+    meals: [Meal]!
 }
