@@ -4,6 +4,15 @@ import { getLogger } from "../../../utils/logger";
 const logger = getLogger(__dirname);
 
 export const authenticationResolvers: Resolvers = {
+  Query: {
+    async isUserAuthenticated(
+      _,
+      { userName },
+      { dataSources: { authenticationService } }
+    ) {
+      return await authenticationService.authenticateUser(userName);
+    },
+  },
   Mutation: {
     signUp(_, { input }, { dataSources: { authenticationService } }) {
       logger.info(input);

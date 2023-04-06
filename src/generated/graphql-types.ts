@@ -55,12 +55,12 @@ export type Query = {
   __typename?: 'Query';
   fetchAllMeals: Array<Meal>;
   fetchAllRestaurants: Array<Maybe<Restaurant>>;
-  test: Scalars['Boolean'];
+  isUserAuthenticated: Scalars['Boolean'];
 };
 
 
-export type QueryTestArgs = {
-  test?: InputMaybe<Scalars['String']>;
+export type QueryIsUserAuthenticatedArgs = {
+  userName: Scalars['String'];
 };
 
 export type Restaurant = {
@@ -208,7 +208,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   fetchAllMeals?: Resolver<Array<ResolversTypes['Meal']>, ParentType, ContextType>;
   fetchAllRestaurants?: Resolver<Array<Maybe<ResolversTypes['Restaurant']>>, ParentType, ContextType>;
-  test?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, Partial<QueryTestArgs>>;
+  isUserAuthenticated?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<QueryIsUserAuthenticatedArgs, 'userName'>>;
 };
 
 export type RestaurantResolvers<ContextType = any, ParentType extends ResolversParentTypes['Restaurant'] = ResolversParentTypes['Restaurant']> = {

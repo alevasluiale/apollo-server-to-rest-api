@@ -12,4 +12,11 @@ export class AuthenticationService extends AuthenticatedRESTDataSource {
     // @ts-ignore
     return this.post<"/auth/signin">(url, input);
   }
+  authenticateUser(userName: string) {
+    const url = "/auth/authenticate";
+    // @ts-ignore
+    return this.get<typeof url>(url, {
+      userName,
+    });
+  }
 }

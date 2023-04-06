@@ -10,7 +10,8 @@ input SignInInput {
 }
 
 type Query {
-    test(test: String): Boolean!
+    isUserAuthenticated(userName: String!): Boolean!
+
 }
 type Mutation {
     signUp(input: SignUpInput): String!
